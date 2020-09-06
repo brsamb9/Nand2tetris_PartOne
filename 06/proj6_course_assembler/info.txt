@@ -1,0 +1,52 @@
+Title:          Project 6: Assembler - Nand to Tetris online course
+
+Top-level Details:
+Purpose:    High-level language Assembler - convert .asm file to binary via a high-level language (e.g. C++)
+    Aims:
+        - each file to be independently 'unit tested'
+        - write code in an modular manner with core emphasis on abstraction 
+            - classes
+
+Files:  main.cpp & h    
+            Input: command-line argument: text file (.asm)
+            Output: text file (.hack) of binary
+            Responsilbities:
+            -> I/O 
+                -> remove white-lines & comments (//)
+                -> Data structure: array of strings 
+            -> Pipeline rest of files
+                - initalise symbol table 
+
+        parser.cpp & h
+            Input: 
+            Output:
+            Responsibilities:
+            -> unpacks each instruction into fields
+
+        field2binary.cpp & h
+            input:
+            output:
+            Responsibilities:
+            -> translate each field into binary
+                -> A-instruction / C-instruction
+                    - if '@' symbol -> A-instruction
+                    - if C-instruction (e.g. D = A + 1 ; JMP) -> complete instruction translation
+                -> standard decimal to binary conversion
+  
+
+
+        symbol_table.cpp & h
+            Input: text file (.asm)
+            Output: N/A -> updates symbol table
+            Responsibilities:
+                - initalise empty symbol table 
+                    - Entires have the form (name, address) - single-value pairs 
+                    - Populate with pre-defined symbols (unique to assembly lanugage)
+                - 'First-pass' :  (keep track of index)
+                    - scan entire program, for each (label:loop) instruction -> add pair to table
+                        - index after (loop)
+                - 'Second-pass' : 
+                    - scan entire program, for user variables
+                        - n set to 16 [n = address index to start populating variable names]
+                        - if not found in symbol table -> add pair 
+                        
